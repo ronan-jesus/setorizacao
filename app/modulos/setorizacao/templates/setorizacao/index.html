@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>    
+    <meta charset="UTF-8"/>
+    <title>SetorizaPy</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+</head>
+<body>
+    <!-- Conteúdo -->    
+    <div class="container-fluid bg-dark">
+      <div class="row">
+          {% for dmc in dmcs %}
+            <div class="col-lg-4 p-1">   
+              <div class="card" style="width:400px">
+                <div class="card-header bg-secondary" align="center">{{dmc.id_dmc}}</div>
+                {% if dmc.id_dmc == '15.001' %}                
+                  <img class="card-img-top" src="{{url_for('.static', filename='imgs/15.001.png')}}" alt="Card image">
+                {% elif dmc.id_dmc == '01.001' %}                
+                  <img class="card-img-top" src="{{url_for('.static', filename='imgs/01.001.png')}}" alt="Card image">
+                {% elif dmc.id_dmc == '01.002' %}                
+                  <img class="card-img-top" src="{{url_for('.static', filename='imgs/01.002.png')}}" alt="Card image">
+                {% else %}
+                  <img class="card-img-top" src="{{url_for('.static', filename='imgs/gmaps_distrito.png')}}" alt="Card image">
+                {% endif %}
+                <div class="card-body bg-secondary" align="center">
+                <h4 class="card-title">{{dmc.nome}}</h4>
+                <p class="card-text">Ligações: 876</p>
+                <p class="card-text">Extensão de redes: 5.789 m.</p>
+                <p class="card-text">Some example text.</p>
+                <a href="#" class="btn btn-primary stretched-link">Indicadores</a>
+                <a href="{{url_for('setorizacao.administrar', id_dmc=dmc.id_dmc)}}" class="btn btn-primary stretched-link">Administrar</a>
+                <a href="{{url_for('setorizacao.distritos')}}" class="btn btn-primary stretched-link">Ver no mapa</a>
+                </div>
+              </div>
+            </div>
+          {%endfor%}
+      </div>
+      <div class="row">
+          
+      </div>
+    </div>    
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/jquery-3.5.1.min.js') }}"></script>
+</body>
+</html>
